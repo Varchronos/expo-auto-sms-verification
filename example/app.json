@@ -12,7 +12,7 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "expo.modules.autosmsverification.example"
     },
     "android": {
@@ -24,9 +24,6 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "expo.modules.autosmsverification.example"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }

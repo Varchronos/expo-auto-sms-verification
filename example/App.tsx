@@ -1,5 +1,6 @@
 import { useAutoSmsVerification } from 'expo-auto-sms-verification';
 import ExpoAutoSmsVerificationModule from 'expo-auto-sms-verification/ExpoAutoSmsVerificationModule';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import {
@@ -14,6 +15,7 @@ import {
 
 export default function App() {
   const otpInputRef = useRef<TextInput>(null);
+  const [messageHashes, setMessageHashes] = useState<string[]>([])
 
   const { startListening, stopListening, otp, status, error } = useAutoSmsVerification({
     otpPattern: /(\d{6})/,
@@ -25,9 +27,10 @@ export default function App() {
 
   useEffect(() => {
     ExpoAutoSmsVerificationModule.getMessageHash().then((res) => {
-      console.log(res)
+      if (res.length)
+        setMessageHashes(res)
     })
-  })
+  }, [setMessageHashes])
 
   const isListening = status === 'listening';
   const isReceived = status === 'received';
@@ -87,10 +90,10 @@ export default function App() {
         <View style={styles.hint}>
           <Text style={styles.hintTitle}>SMS must follow this format:</Text>
           <Text style={styles.hintCode}>
-            {'Your code is 123456\n\n<app-hash>'}
+            {`Your code is 123456\n\n${messageHashes.join('\n')}`}
           </Text>
           <Text style={styles.hintNote}>
-            Replace {'<app-hash>'} with your 11-character app hash from Play App Signing.
+            the 11 character code\s in the example above is your current app message hash.
           </Text>
         </View>
       </View>
