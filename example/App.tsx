@@ -1,4 +1,6 @@
 import { useAutoSmsVerification } from 'expo-auto-sms-verification';
+import ExpoAutoSmsVerificationModule from 'expo-auto-sms-verification/ExpoAutoSmsVerificationModule';
+import { useEffect } from 'react';
 import { useRef } from 'react';
 import {
   ActivityIndicator,
@@ -20,6 +22,12 @@ export default function App() {
       otpInputRef.current?.setNativeProps({ text: code });
     },
   });
+
+  useEffect(() => {
+    ExpoAutoSmsVerificationModule.getMessageHash().then((res) => {
+      console.log(res)
+    })
+  })
 
   const isListening = status === 'listening';
   const isReceived = status === 'received';

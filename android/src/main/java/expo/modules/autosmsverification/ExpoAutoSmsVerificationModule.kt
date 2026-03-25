@@ -7,6 +7,9 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
+import android.content.pm.PackageManager
+import android.util.Base64
+import java.security.MessageDigest
 
 @Suppress("unused")
 class ExpoAutoSmsVerificationModule : Module() {
@@ -63,6 +66,31 @@ class ExpoAutoSmsVerificationModule : Module() {
         // Manually stop listening before the 5-minute timeout
         AsyncFunction("stopSmsRetriever") {
             unregisterReceiver()
+        }
+
+        AsyncFunction("getMessageHash"){
+            val context = appContext.reactContext?:throw Exception("React context not available")
+
+            val packageName = context.packageName;
+            val pkgManager = context.packageManager;
+
+            val signatures = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+                val signingInfo = pkgManager.getPackageInfo(packageName, PackageManager.GET_SIGNING_CERTIFICATES).signingInfo?:throw Exception("Signing info couldn't be found")
+                if(signingInfo.hasMultipleSigners())signingInfo.apkContentsSigners
+                else signingInfo.signingCertificateHistory
+            }else{
+                @Suppress("DEPRECATION")
+                pkgManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures
+            }
+
+            signatures?.map{ sig->
+                val appInfo = "$packageName ${sig.toCharsString()}"
+                val digest = MessageDigest.getInstance("SHA-256")
+                    .digest(appInfo.toByteArray(Charsets.UTF_8))
+                    .copyOf(9)
+                Base64.encodeToString(digest, Base64.NO_PADDING or Base64.NO_WRAP).take(11)
+            }
+
         }
 
         OnDestroy {
