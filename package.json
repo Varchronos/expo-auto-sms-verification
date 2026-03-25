@@ -1,9 +1,24 @@
 {
   "name": "expo-auto-sms-verification",
   "version": "0.1.0",
-  "description": "My new module",
+  "description": "Expo module for Android SMS Retriever API — automatically intercepts OTP SMS messages without requiring SMS read permissions.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "source": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./build/index.js",
+      "require": "./build/index.js",
+      "types": "./build/index.d.ts"
+    }
+  },
+  "files": [
+    "build",
+    "android",
+    "ios",
+    "src",
+    "expo-module.config.json"
+  ],
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
@@ -18,10 +33,17 @@
   "keywords": [
     "react-native",
     "expo",
-    "expo-auto-sms-verification",
-    "ExpoAutoSmsVerification"
+    "android",
+    "sms",
+    "otp",
+    "sms-retriever",
+    "auto-verification",
+    "expo-module"
   ],
-  "repository": "https://github.com/Varchronos/expo-auto-sms-verification",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Varchronos/expo-auto-sms-verification.git"
+  },
   "bugs": {
     "url": "https://github.com/Varchronos/expo-auto-sms-verification/issues"
   },
@@ -39,5 +61,10 @@
     "expo": "*",
     "react": "*",
     "react-native": "*"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
   }
 }
