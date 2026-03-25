@@ -1,4 +1,4 @@
-import ExpoAutoSmsVerification, { useAutoSmsVerification } from 'expo-auto-sms-verification';
+import { useAutoSmsVerification } from 'expo-auto-sms-verification';
 import { useRef } from 'react';
 import {
   ActivityIndicator,
@@ -73,17 +73,6 @@ export default function App() {
               SMS Auto-Verification is Android-only.
             </Text>
           </View>
-        )}
-
-        {/* DEBUG: simulate an incoming SMS without a real backend */}
-        {__DEV__ && (
-          <TouchableOpacity
-            style={styles.buttonDebug}
-            onPress={() =>
-              ExpoAutoSmsVerification.simulateSms('Your code is 123456\n\nDupZx+hcHZP')
-            }>
-            <Text style={styles.buttonText}>⚡ Simulate SMS (dev only)</Text>
-          </TouchableOpacity>
         )}
 
         {/* Example SMS format hint */}
@@ -234,11 +223,5 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: '#94a3b8',
     lineHeight: 16,
-  },
-  buttonDebug: {
-    backgroundColor: '#0ea5e9',
-    borderRadius: 12,
-    paddingVertical: 14,
-    alignItems: 'center',
   },
 });

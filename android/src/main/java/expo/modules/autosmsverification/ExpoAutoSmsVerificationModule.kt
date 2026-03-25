@@ -60,12 +60,6 @@ class ExpoAutoSmsVerificationModule : Module() {
             )
         }
 
-        // DEBUG ONLY — fires onSmsReceived directly without real SMS.
-        // Remove before releasing to production.
-        Function("simulateSms") { message: String ->
-            sendEvent("onSmsReceived", mapOf("message" to message))
-        }
-
         // Manually stop listening before the 5-minute timeout
         AsyncFunction("stopSmsRetriever") {
             unregisterReceiver()
