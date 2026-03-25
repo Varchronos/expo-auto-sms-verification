@@ -1,6 +1,6 @@
 {
   "name": "expo-auto-sms-verification",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Expo module for Android SMS Retriever API — automatically intercepts OTP SMS messages without requiring SMS read permissions.",
   "main": "build/index.js",
   "types": "build/index.d.ts",

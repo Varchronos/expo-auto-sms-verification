@@ -12,3 +12,13 @@ __tests__
 /android/src/test/
 /android/build/
 /example/
+
+# Source maps - not needed by consumers
+/build/**/*.js.map
+/build/**/*.d.ts.map
+
+# TypeScript source - consumers use the compiled build/
+/src/
+
+# iOS - platform not supported
+/ios/
