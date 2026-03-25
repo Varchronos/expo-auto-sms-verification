@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android", "web"],
+  "apple": {
+    "modules": ["ExpoAutoSmsVerificationModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.autosmsverification.ExpoAutoSmsVerificationModule"]
+  }
+}
