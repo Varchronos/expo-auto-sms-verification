@@ -251,6 +251,20 @@ Get `<your-app-hash>` by calling `getMessageHash()` in your debug build.
 
 Contributions are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/Varchronos/expo-auto-sms-verification).
 
+## References
+
+- [Google SMS Retriever API Overview](https://developers.google.com/identity/sms-retriever/overview)
+- [SMS Retriever API - Verify Messages](https://developers.google.com/identity/sms-retriever/verify)
+- [Expo Modules API](https://docs.expo.dev/modules/overview/)
+- [Google Play Restricted Permissions Policy](https://support.google.com/googleplay/android-developer/answer/9047303)
+- [Android App Signing & Certificate Rotation](https://developer.android.com/studio/publish/app-signing)
+
+## Author
+
+**Dhruv Rajak** ([@Varchronos](https://github.com/Varchronos))
+
+README, Example and documentation co-authored with [Claude](https://claude.ai) by Anthropic.
+
 ## License
 
 MIT
